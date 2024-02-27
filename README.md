@@ -1,2 +1,2 @@
 # android-compose-book
-Composeで始めるAndroidプログラミング
+Kotlin知識ゼロOK！Composeで始めるAndroidプログラミング
