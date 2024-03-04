@@ -1,3 +1,9 @@
+# MacOS
+.DS_Store
+# App Specific cases 
+app/release/output.json
+.idea/codeStyles/
+
 # Gradle files
 .gradle/
 build/
@@ -32,5 +38,8 @@ google-services.json
 # Android Profiling
 *.hprof
 
-# MacOS
-.DS_Store
+# lint
+lint/intermediates/
+lint/generated/
+lint/outputs/
+lint/tmp/
