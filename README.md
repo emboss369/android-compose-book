@@ -1,6 +1,6 @@
 # android-compose-book
 
-Composeで始めるAndroidプログラミング
+Kotlin知識ゼロOK！Composeで始めるAndroidプログラミング
 
 ## Chapter 4 じゃんけんアプリを作ろう
 
