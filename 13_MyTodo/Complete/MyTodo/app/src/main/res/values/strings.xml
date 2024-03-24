@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MyTodo</string>
+    <string name="item_entry_title">Todo追加</string>
+    <string name="edit_item_title">Todo編集</string>
+</resources>

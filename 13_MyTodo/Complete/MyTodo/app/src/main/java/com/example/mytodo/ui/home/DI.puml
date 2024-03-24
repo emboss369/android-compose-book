@@ -1,0 +1,43 @@
+@startuml
+
+class AppViewModelProvider {
+{static} Factory
+}
+
+class HomeViewModel {
+  -ItemRepository itemRepository
+}
+
+interface ItemRepository {
+  +getAllItemsStream()
+  +getItemStream(id: Int)
+  +insertItem(item: Item)
+  +deleteItem(item: Item)
+  +updateItem(item: Item)
+}
+
+class ItemRepositoryImpl {
+  +getAllItemsStream()
+  +getItemStream(id: Int)
+  +insertItem(item: Item)
+  +deleteItem(item: Item)
+  +updateItem(item: Item)
+}
+
+class "ItemRepositoryモック用" as mock {
+  +getAllItemsStream()
+  +getItemStream(id: Int)
+  +insertItem(item: Item)
+  +deleteItem(item: Item)
+  +updateItem(item: Item)
+}
+note bottom:テストのための模擬オブジェクト
+
+HomeViewModel --> ItemRepository : 依存している
+AppViewModelProvider --> HomeViewModel : 注入
+ItemRepositoryImpl ..|> ItemRepository : 実装する
+mock ..|> ItemRepository : 実装する
+AppViewModelProvider --> ItemRepositoryImpl : 生成
+AppViewModelProvider --> mock : 生成
+
+@enduml
