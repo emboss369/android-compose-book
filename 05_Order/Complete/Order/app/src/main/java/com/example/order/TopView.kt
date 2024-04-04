@@ -45,7 +45,6 @@ import com.example.order.ui.theme.Orange900
 @Composable
 fun TopView(onTapButton: () -> Unit) {
   Column {
-
     Box(contentAlignment = Alignment.TopCenter) {
       Image(
         painter = painterResource(id = R.drawable.top),
@@ -62,7 +61,7 @@ fun TopView(onTapButton: () -> Unit) {
         color = Lime600,
         fontSize = 50.sp,
         fontStyle = FontStyle.Italic,
-        fontWeight = FontWeight.Black,
+        fontWeight = FontWeight.Bold,
         textAlign = TextAlign.Center,
         fontFamily = FontFamily.SansSerif,
         style = TextStyle(
@@ -86,10 +85,10 @@ fun TopView(onTapButton: () -> Unit) {
       Pair("coffee", R.drawable.coffee),
       Pair("nugget", R.drawable.nugget)
     )
+
     Row(
       modifier = Modifier.horizontalScroll(scrollState)
     ) {
-
       menuItems.forEach { menuItem ->
         MenuView(modifier = Modifier
           .width(150.dp)
@@ -106,9 +105,8 @@ fun TopView(onTapButton: () -> Unit) {
   widthDp = 360, heightDp = 740)
 @Composable
 fun TopViewPreview() {
-    TopView(onTapButton = {})
+  TopView(onTapButton = {})
 }
-
 
 @Composable
 fun MenuView(
@@ -123,8 +121,8 @@ fun MenuView(
     .background(
       brush = Brush.linearGradient(
         colors = listOf(BaseColor, Orange400),
-        start = Offset(0f, 80.dp.px), // グラデーションの開始位置（上部）
-        end = Offset(0f, 150.dp.px) // グラデーションの終了位置（下部）
+        start = Offset(0f, 80.dp.px),
+        end = Offset(0f, 150.dp.px)
       ), shape = RoundedCornerShape(20.dp)
     ), contentAlignment = Alignment.Center) {
     Column(
@@ -141,10 +139,11 @@ fun MenuView(
 }
 
 @Stable
-inline val Dp.px: Float @Composable get() {
-  val density = LocalDensity.current
-  return with(density) { this@px.toPx() }
-}
+inline val Dp.px: Float
+  @Composable get() {
+    val density = LocalDensity.current
+    return with(density) { this@px.toPx() }
+  }
 
 @Preview(showBackground = true)
 @Composable

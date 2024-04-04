@@ -18,7 +18,7 @@ fun Arc(
   color: Color, timeLeft: Float
 ) {
   Canvas(
-    modifier = Modifier.fillMaxSize()
+  modifier = Modifier.fillMaxSize()
   ) {
     val strokeWidth = min(size.width, size.height) / 20.0f
     val minSize = min(size.width, size.height) - strokeWidth
@@ -30,13 +30,13 @@ fun Arc(
       offset = Offset((maxSize - minSize) / 2.0f, strokeWidth / 2.0f)
     }
     drawArc(
-      color = color,
-      startAngle = -90.0f,
-      sweepAngle = timeLeft * 360.0f,
-      useCenter = false,
-      topLeft = offset,
-      size = Size(minSize, minSize),
-      style = Stroke(width = strokeWidth, cap = StrokeCap.Round)
+    color = color,
+    startAngle = -90.0f,
+    sweepAngle = timeLeft * 360.0f,
+    useCenter = false,
+    topLeft = offset,
+    size = Size(minSize, minSize),
+    style = Stroke(width = strokeWidth, cap = StrokeCap.Round)
     )
   }
 }
@@ -58,4 +58,3 @@ fun ArcPreview2() {
 fun ArcPreview3() {
   Arc(color = Color.Blue, timeLeft = 0.5f)
 }
-

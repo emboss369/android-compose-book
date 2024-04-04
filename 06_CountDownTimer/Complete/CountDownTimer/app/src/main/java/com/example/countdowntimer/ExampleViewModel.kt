@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 
 class ExampleViewModel : ViewModel() {
   var uiState = ExampleUiState()
-    private set
+  private set
   var timer: MyCountDownTimer? = null
 
   fun startTimer(millisInFuture: Long) {

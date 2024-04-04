@@ -11,9 +11,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.selection.selectableGroup
@@ -43,7 +41,6 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -51,23 +48,24 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.order.ui.theme.BaseColor
 import com.example.order.ui.theme.Orange400
-import com.example.order.ui.theme.OrderTheme
 import com.example.order.ui.theme.Pink80
 
 @Composable
 fun RadioButtonWithText(
-  text: String, selected: Boolean, onSelect: () -> Unit
+  text: String,
+  selected: Boolean,
+  onSelect: () -> Unit
 ) {
   Row(
     modifier = Modifier
       .padding(8.dp)
       .fillMaxWidth()
-      .selectable(selected = selected, onClick = onSelect),
-    verticalAlignment = Alignment.CenterVertically
+    .selectable(selected = selected, onClick = onSelect),
+  verticalAlignment = Alignment.CenterVertically
   ) {
     RadioButton(
       selected = selected, onClick = null
-    ) // RadioButtonのクリックはRow全体でハンドル
+    )
     Text(
       text = text, style = MaterialTheme.typography.bodyLarge
     )
@@ -78,46 +76,6 @@ fun RadioButtonWithText(
 @Composable
 fun RadioButtonWithTextPreview() {
   RadioButtonWithText(text = "ハンバーガー", selected = true, onSelect = {})
-}
-
-
-@Composable
-fun TypographyList() {
-  OrderTheme {
-    val typography = arrayListOf(
-      MaterialTheme.typography.displayMedium to "displayMedium",
-      MaterialTheme.typography.displaySmall to "displaySmall",
-      MaterialTheme.typography.headlineLarge to "headlineLarge",
-      MaterialTheme.typography.headlineMedium to "headlineMedium",
-      MaterialTheme.typography.headlineSmall to "headlineSmall",
-      MaterialTheme.typography.titleLarge to "titleLarge",
-      MaterialTheme.typography.titleMedium to "titleMedium",
-      MaterialTheme.typography.titleSmall to "titleSmall",
-      MaterialTheme.typography.bodyLarge to "bodyLarge",
-      MaterialTheme.typography.bodyMedium to "bodyMedium",
-      MaterialTheme.typography.bodySmall to "bodySmall",
-      MaterialTheme.typography.labelLarge to "labelLarge",
-      MaterialTheme.typography.labelMedium to "labelMedium",
-      MaterialTheme.typography.labelSmall to "labelSmall",
-    )
-
-    Column(modifier = Modifier.padding(32.dp)) {
-      typography.forEach { prop ->
-        val style = prop.first as? TextStyle
-        style?.let {
-          Text(
-            text = prop.second, style = it
-          )
-        }
-      }
-    }
-  }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun TypographyListPreview() {
-  TypographyList()
 }
 
 @Composable
@@ -134,14 +92,14 @@ fun MainDishSection() {
         .fillMaxWidth()
         .selectableGroup()
     ) {
-      Text("メインを選択", style = MaterialTheme.typography.titleLarge)
-      RadioButtonWithText(
-        text = "ハンバーガー", selected = selectedDish == "ハンバーガー"
-      ) { selectedDish = "ハンバーガー" }
-      RadioButtonWithText(
-        text = "チーズバーガー", selected = selectedDish == "チーズバーガー"
-      ) { selectedDish = "チーズバーガー" }
-    }
+    Text("メインを選択", style = MaterialTheme.typography.titleLarge)
+    RadioButtonWithText(
+      text = "ハンバーガー", selected = selectedDish == "ハンバーガー"
+    ) { selectedDish = "ハンバーガー" }
+    RadioButtonWithText(
+      text = "チーズバーガー", selected = selectedDish == "チーズバーガー"
+    ) { selectedDish = "チーズバーガー" }
+  }
   }
 }
 
@@ -171,18 +129,18 @@ fun SideMenuSection() {
       Row(
         modifier = Modifier.toggleable(
           value = frenchFries,
-          onValueChange = { frenchFries = it }
-        ),
-        verticalAlignment = Alignment.CenterVertically
+        onValueChange = { frenchFries = it }
+      ),
+      verticalAlignment = Alignment.CenterVertically
       ) {
-        Checkbox(
-          checked = frenchFries,
-          onCheckedChange = null
-        )
-        Text(
-          "フレンチフライ", style = MaterialTheme.typography.bodyLarge
-        )
-      }
+      Checkbox(
+        checked = frenchFries,
+      onCheckedChange = null
+      )
+      Text(
+        "フレンチフライ", style = MaterialTheme.typography.bodyLarge
+      )
+    }
     }
   }
 }
@@ -194,74 +152,6 @@ fun SideMenuSection() {
 @Composable
 fun SideMenuSectionPreview() {
   SideMenuSection()
-}
-
-@Preview(showBackground = true)
-@Composable
-fun ShapesPreview() {
-  Column(
-    modifier = Modifier
-      .padding(16.dp),
-    verticalArrangement = Arrangement.spacedBy(8.dp)
-  ) {
-    Box(
-      modifier = Modifier
-        .width(100.dp)
-        .background(
-          color = Color.Blue,
-          shape = MaterialTheme.shapes.extraSmall
-        ),
-      contentAlignment = Alignment.Center
-
-    ) {
-      Text(text = "extraSmall", color = Color.White)
-    }
-    Box(
-      modifier = Modifier
-        .width(100.dp)
-
-        .background(color = Color.Blue, shape = MaterialTheme.shapes.small),
-      contentAlignment = Alignment.Center
-    ) {
-      Text(text = "small", color = Color.White)
-    }
-    Box(
-      modifier = Modifier
-        .width(100.dp)
-        .height(24.dp)
-        .background(
-          color = Color.Blue,
-          shape = MaterialTheme.shapes.medium
-        ),
-      contentAlignment = Alignment.Center
-    )
-    {
-      Text(text = "medium", color = Color.White)
-    }
-    Box(
-      modifier = Modifier
-        .width(100.dp)
-        .height(32.dp)
-        .background(color = Color.Blue, shape = MaterialTheme.shapes.large),
-      contentAlignment = Alignment.Center
-    )
-    {
-      Text(text = "large", color = Color.White)
-    }
-    Box(
-      modifier = Modifier
-        .width(100.dp)
-        .height(56.dp)
-        .background(
-          color = Color.Blue,
-          shape = MaterialTheme.shapes.extraLarge
-        ),
-      contentAlignment = Alignment.Center
-    )
-    {
-      Text(text = "extraLarge", color = Color.White)
-    }
-  }
 }
 
 @Composable
@@ -280,9 +170,9 @@ fun SauceAmountSection() {
       Slider(
         value = sauceAmount,
         onValueChange = { sauceAmount = it },
-        modifier = Modifier
-          .padding(16.dp)
-          .fillMaxWidth()
+      modifier = Modifier
+        .padding(16.dp)
+        .fillMaxWidth()
       )
       Text(
         text = when {
@@ -335,14 +225,14 @@ fun DrinkSelectionSection() {
           modifier = Modifier
             .fillMaxWidth()
             .clickable { expanded = true },
-          trailingIcon = {
-            Icon(
-              Icons.Filled.ArrowDropDown,
-              "dropdown",
-              Modifier.clickable { expanded = true })
-          },
-          label = { Text("ドリンク") },
-          readOnly = true
+        trailingIcon = {
+          Icon(
+            Icons.Filled.ArrowDropDown,
+            "dropdown",
+            Modifier.clickable { expanded = true })
+        },
+        label = { Text("ドリンク") },
+        readOnly = true
         )
         DropdownMenu(expanded = expanded,
           onDismissRequest = { expanded = false }) {
@@ -358,7 +248,8 @@ fun DrinkSelectionSection() {
   }
 }
 
-@Preview(showBackground = true, backgroundColor = 0xFF000000)
+@Preview(showBackground = true,
+  backgroundColor = 0xFF000000)
 @Composable
 fun DrinkSelectionSectionPreview() {
   DrinkSelectionSection()
@@ -373,11 +264,11 @@ fun OrderButtonSection(text: String, onClick: () -> Unit = {}) {
     onClick = onClick,
     colors = ButtonDefaults.buttonColors(
       containerColor = Color.Transparent
-    ),
-    contentPadding = PaddingValues(),
-    modifier = Modifier
-      .fillMaxWidth()
-      .background(gradient, shape = MaterialTheme.shapes.extraLarge)
+  ),
+  contentPadding = PaddingValues(),
+  modifier = Modifier
+    .fillMaxWidth()
+    .background(gradient, shape = MaterialTheme.shapes.extraLarge)
   ) {
     Text(
       text = text,
@@ -404,8 +295,8 @@ fun OrderView(
     modifier = Modifier
       .padding(16.dp)
       .verticalScroll(scrollState),
-    verticalArrangement = Arrangement.spacedBy(16.dp),
-    horizontalAlignment = Alignment.CenterHorizontally
+  verticalArrangement = Arrangement.spacedBy(16.dp),
+  horizontalAlignment = Alignment.CenterHorizontally
   ) {
     Image(
       painter = painterResource(id = R.drawable.order_screen),
@@ -445,4 +336,3 @@ fun OrderView(
 fun OrderViewPreview() {
   OrderView()
 }
-

@@ -35,7 +35,6 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.countdowntimer.ui.theme.CountDownTimerTheme
 
-
 class MainActivity : ComponentActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -53,21 +52,6 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-  Text(
-    text = "Hello $name!", modifier = modifier
-  )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-  CountDownTimerTheme {
-    Greeting("Android")
-  }
-}
-
-@Composable
 fun ExampleScaffold(viewModel: ExampleViewModel = viewModel()) {
   val uiState = viewModel.uiState
   val iconOnClick: (Int) -> Unit = { time: Int ->
@@ -80,6 +64,7 @@ fun ExampleScaffold(viewModel: ExampleViewModel = viewModel()) {
       viewModel.startTimer(viewModel.uiState.time.value)
     }
   }
+
   Scaffold(topBar = { TopBar(iconOnClick = iconOnClick) },
     bottomBar = { BottomBar(iconOnClick = iconOnClick) },
     floatingActionButton = {
@@ -153,16 +138,13 @@ fun TopBar(
         maxLines = 1,
         overflow = TextOverflow.Ellipsis
       )
-    },
-    navigationIcon = {
+    }, navigationIcon = {
       IconButton(onClick = { /*TODO*/ }) {
         Icon(
-          imageVector = Icons.Filled.Timer,
-          contentDescription = "Timer"
+          imageVector = Icons.Filled.Timer, contentDescription = "Timer"
         )
       }
-    },
-    actions = {
+    }, actions = {
       IconButton(onClick = { iconOnClick(3) }) {
         Icon(
           imageVector = Icons.Outlined.Timer3Select,
@@ -175,8 +157,7 @@ fun TopBar(
           contentDescription = "Timer10Select"
         )
       }
-    },
-    colors = TopAppBarDefaults.topAppBarColors(
+    }, colors = TopAppBarDefaults.topAppBarColors(
       containerColor = MaterialTheme.colorScheme.primary,
       navigationIconContentColor = MaterialTheme.colorScheme.onPrimary,
       titleContentColor = MaterialTheme.colorScheme.onPrimary,
@@ -199,12 +180,10 @@ fun BottomBar(
     actions = {
       IconButton(onClick = { iconOnClick(60) }) {
         Icon(
-          imageVector = Icons.Default.PlusOne,
-          contentDescription = "PlusOne"
+          imageVector = Icons.Default.PlusOne, contentDescription = "PlusOne"
         )
       }
-    }
-  )
+    })
 }
 
 @Preview
@@ -212,4 +191,3 @@ fun BottomBar(
 fun BottomAppBarPreview() {
   BottomBar(iconOnClick = {})
 }
-
